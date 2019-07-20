@@ -1,5 +1,10 @@
 .form {
-    padding: 10px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 30px;
+    margin-top: -1px;
 }
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 class Tile extends Component {
   render() {
     return (
-      <div className="col-sm-4">
+      <div className="col-sm-3">
         <div className="card">
           <img
             className="card-img-tag center "

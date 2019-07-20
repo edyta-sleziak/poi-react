@@ -4,8 +4,8 @@ import "./searchbar.css"
 export default class Searchbar extends Component {
   render() {
     return (
-      <div className="container-fluid">
-        <div className="row bg-secondary text-light">
+      <div className="container-fluid pull-right">
+        <div className="row bg-light text-dark">
           <div id="search" className="input-group">
             <h4>Search</h4>
             <div className="input-group input-group-default mb-2">
