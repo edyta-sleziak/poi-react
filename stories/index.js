@@ -2,10 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
 import List from '../src/components/list/';
-import Header from '../src/components/header/';
+import Navigation from '../src/components/navigation/';
 import Searchbar from '../src/components/searchbar/';
+import CommentForm from '../src/components/commentForm/';
 import Form from '../src/components/form/';
 import Tile from '../src/components/tile/';
+import Details from '../src/components/details/';
+import { action } from "@storybook/addon-actions";
+import DetailsOptions from '../src/components/detailsOptions/';
 
 const island = {
   "name": "Fall-Island",
@@ -17,9 +21,9 @@ const island = {
   "upvotes": 34
 };
 
-storiesOf("POI React App/Header", module)
+storiesOf("POI React App/Navigation", module)
   .add("default", () => (
-    <Header  />
+    <Navigation  />
   ));
 
 storiesOf("POI React App/List", module)
@@ -29,16 +33,24 @@ storiesOf("POI React App/List", module)
   });
 
 storiesOf("POI React App/Tile", module)
-  .add("default", () => (
-    <Tile island={island} />
+  .add("upvoting", () => <Tile island={island} upvoteHandler={action("upvoted")} /> )
+  .add("deleting", () => (
+    <Tile island={island} deleteHandler={action('Delete confirmed') }/>
   ));
 
 storiesOf("POI React App/Searchbar", module)
   .add("default", () => (
-    <Searchbar />
+    <Searchbar onUserInput={action('Search criteria changes') }/>
   ));
 
 storiesOf("POI React App/Form", module)
-  .add("default", () => (
-    <Form />
-  ));
+  .add("default", () => <Form island={island} handleAdd={action('Add new post')}/>);
+
+storiesOf("POI React App/Details", module)
+  .add("default", () => <Details island={island} />);
+
+storiesOf("POI React App/Comment Form", module)
+  .add("default", () => <CommentForm  />);
+
+storiesOf("POI React App/Details options", module)
+  .add("default", () => <DetailsOptions  />);
