@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import List from './components/list';
 import Form from './components/form';
 import Navigation from './components/navigation';
 import Searchbar from './components/searchbar';
-import DetailsOptions from './components/detailsOptions';
 import api from './dataStore/stubAPI';
 import _ from 'lodash';
 

@@ -10,6 +10,7 @@ import Tile from '../src/components/tile/';
 import Details from '../src/components/details/';
 import { action } from "@storybook/addon-actions";
 import DetailsOptions from '../src/components/detailsOptions/';
+import { MemoryRouter, Route } from "react-router";
 
 const island = {
   "name": "Fall-Island",
@@ -27,12 +28,18 @@ storiesOf("POI React App/Navigation", module)
   ));
 
 storiesOf("POI React App/List", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
   .add("default", () => {
     const islands = [island, island, island, island, island];
     return <List islands={islands}/>
   });
 
 storiesOf("POI React App/Tile", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
   .add("upvoting", () => <Tile island={island} upvoteHandler={action("upvoted")} /> )
   .add("deleting", () => (
     <Tile island={island} deleteHandler={action('Delete confirmed') }/>

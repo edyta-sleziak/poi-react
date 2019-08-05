@@ -2,18 +2,23 @@ import React, { Component } from "react";
 import "./tile.css";
 import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 class Tile extends Component {
   render() {
     return (
-      <div className="col-sm-3">
+      <div className="col-md-3">
         <div className="card">
-          <img
-            className="card-img-tag center "
-            alt={this.props.island.name}
-            src={this.props.island.picture}
-          />
-          <div className="card-body">
+          <Link
+            to={`/islands/${this.props.island.id}`}
+          >
+            <img
+              className="card-img-tag center "
+              alt={this.props.island.name}
+              src={this.props.island.picture}
+            />
+          </Link>
+          <div className="card-body center">
             <h5 className="card-title ">
               {`${this.props.island.name}`}
             </h5>
@@ -24,24 +29,6 @@ class Tile extends Component {
               <FontAwesomeIcon icon={["fas", "thumbs-up"]} />
               {`  ${this.props.island.upvotes}`}
             </p>
-          </div>
-          <div className="card-footer">
-            <div
-              className="btn-group d-flex btn-group-justified"
-              role="group"
-              aria-label="..."
-            >
-              <button type="button" className={"btn btn-success w-100"}>
-                {<FontAwesomeIcon icon={["fas", "info"]} />}
-              </button>
-              <button type="button" className={"btn btn-warning w-100"}>
-                {<FontAwesomeIcon icon={["fas", "edit"]} />}
-              </button>
-              <button type="button" className={"btn btn-danger w-100"}>
-                {<FontAwesomeIcon icon={["fas", "trash"]} />}
-              </button>
-
-            </div>
           </div>
         </div>
       </div>

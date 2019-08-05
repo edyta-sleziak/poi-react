@@ -182,7 +182,7 @@ class StubAPI {
   find(id) {
     let index = _.findIndex(
       this.islands,
-      island => `${island.name}${island.category}` === id
+      island => island.id === id
     );
     if (index !== -1) {
       return this.islands[index];
