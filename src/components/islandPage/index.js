@@ -9,6 +9,7 @@ import api from '../../dataStore/stubAPI';
 class IslandPage extends Component {
   state = {
     status: "normal",
+    saveChanges: false
   };
 
   handleClick = (button) => {
@@ -22,15 +23,20 @@ class IslandPage extends Component {
       if (this.state.status === "normal") {
         this.setState({status: "delete"});
       } else if (this.state.status === "edit") {
+        this.setState({saveChanges: true});
         this.setState({status: "normal"});
       } else if (this.state.status === "delete") {
-        //handledelete
-        window.location.href = '/';
+        this.deleteIsland(this.getId);
+        //window.location.href = '/';
       }
     }
   };
 
   getId = () => parseInt( this.props.match.params.id, 10);
+  deleteIsland = (key) => {
+    api.delete(key);
+    this.setState({});
+  };
   render() {
     let id = this.getId();
     let island = api.find(id);
@@ -46,7 +52,7 @@ class IslandPage extends Component {
               <Navigation />
             </div>
           </div>
-          <Details island={island} state={this.state.status}  />
+          <Details island={island} state={this.state.status} saveChanges={this.state.saveChanges} />
         </div>
       </div>
     );

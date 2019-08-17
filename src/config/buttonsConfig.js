@@ -4,12 +4,12 @@ const buttons = {
     middleButtonVal: "Edit",
     bottomButtonVal: "Delete",
   },
-  delete: {
+  edit: {
     topButtonVal: "Cancel & Go back",
     middleButtonVal: "Discard changes",
     bottomButtonVal: "Save changes",
   },
-  edit: {
+  delete: {
     topButtonVal: "Cancel & Go back",
     middleButtonVal: "Cancel",
     bottomButtonVal: "Confirm",

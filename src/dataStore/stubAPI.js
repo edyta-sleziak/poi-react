@@ -190,26 +190,32 @@ class StubAPI {
     return null;
   }
 
-  delete(k) {
-    let elements = _.remove(this.islands, island => island.name === k);
+  delete(id) {
+    console.log("element removed:" + this.find(id));
+    let elements = _.remove(this.islands, island => island.id === id);
+    console.log("element removed:" + this.find(id));
     return elements;
+  }
+
+  update(id, name, category, description, longitude, latitude) {
+    let index = _.findIndex(this.islands, island => island.id === id);
+    if (index !== -1) {
+      console.log("Record updated " + this.find(id).name);
+      this.islands[index].name = name;
+      this.islands[index].category = category;
+      this.islands[index].description = description;
+      this.islands[index].longitude = longitude;
+      this.islands[index].latitude = latitude;
+      console.log("Record updated " + this.find(id).name);
+      return true;
+    }
+    return false;
   }
 
   initialize(islands) {
     this.islands = islands;
   }
 
-
-
-  update(key, name, category) {
-    let index = _.findIndex(this.islands, island => island.phone === key);
-    if (index !== -1) {
-      this.islands[index].name = name;
-      this.islands[index].category = category;
-      return true;
-    }
-    return false;
-  }
 }
 
 export default new StubAPI();

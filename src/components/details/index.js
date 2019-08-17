@@ -1,67 +1,71 @@
-import React, { Component } from "react";
+import React, {Component, Fragment} from "react";
 import { withRouter } from "react-router-dom";
 import "./details.css";
 import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import DetailsOptions from "../detailsOptions";
-import Navigation from "../navigation";
 import CommentForm from "../commentForm";
-import api from '../../dataStore/stubAPI';
-import _ from 'lodash'
+import api from '../..//dataStore/stubAPI';
 
 class Details extends Component {
   state = {
-    status: "",
-    name: this.props.match.name,
-    description: this.props.match.description,
-    category: this.props.match.category,
-    latitude: this.props.match.latitude,
-    longitude: this.props.match.longitude,
-    picture: this.props.match.picture,
+    name: this.props.island.name,
+    description: this.props.island.description,
+    picture: this.props.island.picture,
+    category: this.props.island.category,
+    latitude: this.props.island.latitude,
+    longitude: this.props.island.longitude,
     previousDetails: {
-      name: this.props.match.name,
-      description: this.props.match.description,
-      category: this.props.match.category,
-      latitude: this.props.match.latitude,
-      longitude: this.props.match.longitude,
-      picture: this.props.match.picture,
+      name: this.props.island.name,
+      description: this.props.island.description,
+      picture: this.props.island.picture,
+      category: this.props.island.category,
+      latitude: this.props.island.latitude,
+      longitude: this.props.island.longitude,
     }
   };
-  getId = () => parseInt( this.props.match.params.id, 10);
+  handleNameChange =(e) => {this.setState({name: e.target.value}) };
+  handleDescriptionChange =(e) => {this.setState({description: e.target.value}) };
+  handleCategoryChange =(e) => {this.setState({category: e.target.value}) };
+  handleLongitudeChange =(e) => {this.setState({longitude: e.target.value}) };
+  handleLatitudeChange =(e) => {this.setState({latitude: e.target.value}) };
+
+  updateIsland = (id) =>{
+    api.update(
+      id,
+      this.props.island.name,
+      this.props.island.category,
+      this.props.island.description,
+      this.props.island.latitude,
+      this.props.island.longitude
+    );
+  };
   render() {
-    let id = this.getId();
-    let island = api.find(id);
-    console.log(island);
+    if (this.props.saveChanges === true) {
+      console.log(this.state);
+      this.updateIsland(this.props.island.id)
+    }
     return (
-      <div className="row">
-        <div id="left" className="col-md-2">
-          <DetailsOptions />
-        </div>
-        <div className="col-md-9">
-          <div className="row">
-            <div className="col-md-12">
-              <Navigation />
-            </div>
-          </div>
-          <div className="card">
+      <div className="card">
+        {this.props.state === "edit" ? (
+          <Fragment>
             <div className="row">
               <div className="col-md-10 bg-secondary text-white">
-              <h2 className="content"> {island.name}</h2>
+                <h2 className="content"> <input type="text" className="form-control" defaultValue={this.props.island.name} onChange={this.handleNameChange} /></h2>
               </div>
               <div className="col-md-2 bg-primary">
-                <span><FontAwesomeIcon icon={["fas", "thumbs-up"]} />  {island.upvotes} </span>
+                <span><FontAwesomeIcon icon={["fas", "thumbs-up"]} />  {this.props.island.upvotes} </span>
               </div>
             </div>
             <div className="row">
               <div className="col-md-7">
                 <h3 className="content">Description</h3>
-                <p className="content">{island.description}</p>
+                <p className="content"><input type="textArea" className="form-control" defaultValue={this.props.island.description} onChange={this.handleDescriptionChange} /></p>
               </div>
               <div className="col-md-5">
                 <img
                   className="card-img-tag center "
-                  alt={island.name}
-                  src={island.picture}
+                  alt={this.props.island.name}
+                  src={this.props.island.picture}
                 />
               </div>
             </div>
@@ -69,9 +73,49 @@ class Details extends Component {
             <div className="row">
               <div className="col-md-4">
                 <h3 className="content">Details</h3>
-                  <span className="content"> Category: {island.category} <br/></span>
-                  <span className="content"> Latitude: {island.latitude} <br/></span>
-                  <span className="content"> Longitude: {island.longitude} <br/></span>
+                <span className="content"> Category:
+                  <select id="category" className="form-control" defaultValue={this.props.island.category} onChange={this.handleCategoryChange}>
+                    <option value="SouthCoast">South Coast</option>
+                    <option value="EastCoast">East Coast</option>
+                    <option value="NorthWest">North West</option>
+                    <option value="MidWest">Mid West</option>
+                  </select><br/>
+                </span>
+                <span className="content"> Latitude: <input type="text" className="form-control" defaultValue={this.props.island.latitude} onChange={this.handleLatitudeChange}/> <br/></span>
+                <span className="content"> Longitude: <input type="text" className="form-control" defaultValue={this.props.island.longitude} onChange={this.handleLongitudeChange} /> <br/></span>
+              </div>
+            </div>
+          </Fragment>
+        ):(
+          <Fragment>
+            <div className="row">
+              <div className="col-md-10 bg-secondary text-white">
+                <h2 className="content"> {this.props.island.name}</h2>
+              </div>
+              <div className="col-md-2 bg-primary">
+                <span><FontAwesomeIcon icon={["fas", "thumbs-up"]} />  {this.props.island.upvotes} </span>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-7">
+                <h3 className="content">Description</h3>
+                <p className="content">{this.props.island.description}</p>
+              </div>
+              <div className="col-md-5">
+                <img
+                  className="card-img-tag center "
+                  alt={this.props.island.name}
+                  src={this.props.island.picture}
+                />
+              </div>
+            </div>
+            <hr />
+            <div className="row">
+              <div className="col-md-4">
+                <h3 className="content">Details</h3>
+                <span className="content"> Category: {this.props.island.category} <br/></span>
+                <span className="content"> Latitude: {this.props.island.latitude} <br/></span>
+                <span className="content"> Longitude: {this.props.island.longitude} <br/></span>
               </div>
               <div className="col-md-7">
                 Map placeholder
@@ -82,8 +126,8 @@ class Details extends Component {
               <h3>Comments</h3>
               <CommentForm />
             </div>
-          </div>
-        </div>
+          </Fragment>
+        )}
       </div>
     );
   }
