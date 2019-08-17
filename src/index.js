@@ -1,13 +1,10 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Redirect, Switch, Link } from "react-router-dom";
-import request from "superagent";
-import api from "./dataStore/stubAPI";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
-import Details from "./components/details";
+import IslandPage from "./components/islandPage";
 
 const Router = (props) => {
   // componentDidMount() {
@@ -27,7 +24,7 @@ const Router = (props) => {
       <div className="jumbotron">
         <div className="container-fluid ">
           <Switch>
-            <Route path="/islands/:id" component={Details} />
+            <Route path="/islands/:id" component={IslandPage} />
             <Route exact path="/" component={App} />
             <Redirect from="*" to="/" />
           </Switch>

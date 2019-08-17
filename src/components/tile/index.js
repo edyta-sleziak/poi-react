@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 class Tile extends Component {
+  handleVote = () =>  this.props.upvoteHandler(this.props.island.id);
   render() {
     return (
       <div className="col-md-3">
@@ -25,9 +26,8 @@ class Tile extends Component {
             <p key="category">
               <FontAwesomeIcon icon={["fas", "globe"]} />
               <span> {this.props.island.category}</span>
-              <br />
-              <FontAwesomeIcon icon={["fas", "thumbs-up"]} />
-              {`  ${this.props.island.upvotes}`}
+              <span onClick={this.handleVote}><FontAwesomeIcon icon={["fas", "thumbs-up"]} />
+                {`  ${this.props.island.upvotes}`}</span>
             </p>
           </div>
         </div>

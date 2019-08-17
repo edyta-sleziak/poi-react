@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import "./details.css";
 import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CommentForm from "../commentForm";
+import CommentSection from "../commentSection";
 import api from '../..//dataStore/stubAPI';
 
 class Details extends Component {
@@ -39,6 +39,7 @@ class Details extends Component {
       this.props.island.longitude
     );
   };
+  handleVote = () =>  this.props.upvoteHandler(this.props.island.id);
   render() {
     if (this.props.saveChanges === true) {
       console.log(this.state);
@@ -53,7 +54,7 @@ class Details extends Component {
                 <h2 className="content"> <input type="text" className="form-control" defaultValue={this.props.island.name} onChange={this.handleNameChange} /></h2>
               </div>
               <div className="col-md-2 bg-primary">
-                <span><FontAwesomeIcon icon={["fas", "thumbs-up"]} />  {this.props.island.upvotes} </span>
+                <span onClick={this.handleVote}><FontAwesomeIcon icon={["fas", "thumbs-up"]} />  {`${this.props.island.upvotes}`} </span>
               </div>
             </div>
             <div className="row">
@@ -93,7 +94,7 @@ class Details extends Component {
                 <h2 className="content"> {this.props.island.name}</h2>
               </div>
               <div className="col-md-2 bg-primary">
-                <span><FontAwesomeIcon icon={["fas", "thumbs-up"]} />  {this.props.island.upvotes} </span>
+                <span onClick={this.handleVote}><FontAwesomeIcon icon={["fas", "thumbs-up"]} />  {`${this.props.island.upvotes}`} </span>
               </div>
             </div>
             <div className="row">
@@ -124,7 +125,7 @@ class Details extends Component {
             <hr />
             <div className="content">
               <h3>Comments</h3>
-              <CommentForm />
+              <CommentSection island={this.props.island} />
             </div>
           </Fragment>
         )}

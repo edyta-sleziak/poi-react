@@ -31,6 +31,10 @@ class IslandPage extends Component {
       }
     }
   };
+  incrementUpvote = (id) => {
+    api.upvote(id) ;
+    this.setState({});
+  };
 
   getId = () => parseInt( this.props.match.params.id, 10);
   deleteIsland = (key) => {
@@ -52,7 +56,7 @@ class IslandPage extends Component {
               <Navigation />
             </div>
           </div>
-          <Details island={island} state={this.state.status} saveChanges={this.state.saveChanges} />
+          <Details island={island} state={this.state.status} saveChanges={this.state.saveChanges}  upvoteHandler={this.incrementUpvote} />
         </div>
       </div>
     );

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import List from './components/list';
 import Form from './components/form';
 import Navigation from './components/navigation';
@@ -16,17 +16,13 @@ export default class App extends Component {
     api.add(name, category);
     this.setState({});
   };
-  deleteIsland = (key) => {
-    api.delete(key);
-    this.setState({});
-  };
   handleChange = (type, value) => {
     type === "name"
       ? this.setState({ search: value })
       : this.setState({ category: value });
   };
   render() {
-    let islands = _.sortBy(api.getAll(), post => -post.upvotes);
+    let islands = _.sortBy(api.getAll(), island => -island.upvotes);
     let filteredIslands = islands.filter(i => {
       const name = `${i.name}`;
       return name.toLowerCase().search(this.state.search.toLowerCase()) !== -1;
@@ -35,7 +31,7 @@ export default class App extends Component {
       this.state.category === "all"
         ? filteredIslands
         : filteredIslands.filter(i => i.category === this.state.category);
-    let sortedIslands = _.sortBy(filteredIslands, i => i.name);
+    let sortedIslands = _.sortBy(filteredIslands, i => -i.upvotes);
     return (
       <div className="jumbotron">
         <div className="container-">
@@ -46,7 +42,7 @@ export default class App extends Component {
             <div className="col-md-10">
               <Navigation/>
               <Searchbar onUserInput={this.handleChange}/>
-              <List islands={sortedIslands} upvoteHandler = {this.incrementUpvote} deleteHandler={this.deleteIsland} />
+              <List islands={sortedIslands} upvoteHandler = {this.incrementUpvote} />
             </div>
           </div>
         </div>
