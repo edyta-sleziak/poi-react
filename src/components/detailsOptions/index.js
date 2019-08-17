@@ -1,34 +1,33 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import './detailsOptions.css';
+import buttons from "../../config/buttonsConfig";
 
 export default class detailsOptions extends Component {
-  // state = {
-  //   status: "",
-  //   name: this.props.island.name,
-  //   description: this.props.island.description,
-  //   category: this.props.island.category,
-  //   latitude: this.props.island.latitude,
-  //   longitude: this.props.island.longitude,
-  //   picture: this.props.island.picture,
-  //   previousDetails: {
-  //     name: this.props.island.name,
-  //     description: this.props.island.description,
-  //     category: this.props.island.category,
-  //     latitude: this.props.island.latitude,
-  //     longitude: this.props.island.longitude,
-  //     picture: this.props.island.picture,
-  //   }
-  // };
+  handleClick = (clickedButton) => {
+    this.props.handleClick(clickedButton);
+  };
+  handleMiddleButton = () => {
+    this.handleClick("middleButton");
+  };
+  handleBottomButton = () => {
+    this.handleClick("bottomButton");
+  };
   render() {
+    let activeButtons = buttons.normal;
+    if (this.props.state === "edit" ) {
+      activeButtons = buttons.edit;
+    } else if (this.props.state === "delete" ) {
+      activeButtons = buttons.delete;
+    }
     return (
       <div className="fill bg-dark sticky-top">
         <div id ="brand" className="text-white bg-primary">
           <h2 align="center">Irish Islands</h2>
         </div>
-        <div id="buttons">
-          <button type="button" className="btn w-100 btn-success">Go back</button><br />
-          <button type="button" className="btn w-100 btn-warning">Edit details</button><br />
-          <button type="button" className="btn w-100 btn-danger">Delete island</button><br />
+        <div id="buttons">"
+          <a href="/"><button type="button" className="btn w-100 btn-success" >{activeButtons.topButtonVal}</button></a><br />
+          <button type="button" className="btn w-100 btn-warning" onClick={this.handleMiddleButton}>{activeButtons.middleButtonVal}</button><br />
+          <button type="button" className="btn w-100 btn-danger" onClick={this.handleBottomButton}>{activeButtons.bottomButtonVal}</button><br />
         </div>
       </div>
     );

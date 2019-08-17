@@ -60,4 +60,6 @@ storiesOf("POI React App/Comment Form", module)
   .add("default", () => <CommentForm  />);
 
 storiesOf("POI React App/Details options", module)
-  .add("default", () => <DetailsOptions  />);
+  .add("default", () => <DetailsOptions  />)
+  .add("edit", () => <DetailsOptions  state={"edit"} />)
+  .add("delete", () => <DetailsOptions  state={"delete"}/>);
