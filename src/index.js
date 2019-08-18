@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import './index.css';
 import App from './App';
 import IslandPage from "./components/islandPage";
+import LoginForm from "./components/authentication/loginForm";
 
 const Router = (props) => {
   // componentDidMount() {
@@ -25,6 +26,7 @@ const Router = (props) => {
         <div className="container-fluid ">
           <Switch>
             <Route path="/islands/:id" component={IslandPage} />
+            <Route path="/login" component={LoginForm} />
             <Route exact path="/" component={App} />
             <Redirect from="*" to="/" />
           </Switch>

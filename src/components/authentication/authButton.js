@@ -6,23 +6,27 @@ const AuthButton = props => {
   const { history } = props;
   return Authentication.isAuthenticated ? (
     <Fragment>
-      {`${Authentication.username} `}
-      <button
-        onClick={() => {
-          Authentication.signout(() => history.push("/"));
-        }}
-      >
-        Sign out
-      </button>
+      <div id="wrapper" className="row">
+        <div className="col-md-6 bg-dark text-primary">
+        {`${Authentication.username} `}
+        </div>
+        <div className="col-md-6 bg-dark text-white"
+          onClick={() => {
+            Authentication.signout(() => history.push("/"));
+          }}
+        >
+          Sign out
+        </div>
+      </div>
     </Fragment>
   ) : (
-    <button
+    <div className="col-md-12 bg-dark text-white"
       onClick={() => {
         history.push("/login");
       }}
     >
       Login
-    </button>
+    </div>
   );
 };
 

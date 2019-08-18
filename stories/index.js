@@ -11,6 +11,7 @@ import Details from '../src/components/details/';
 import DetailsOptions from '../src/components/detailsOptions/';
 import { action } from "@storybook/addon-actions";
 import Map from '../src/components/map/';
+import LoginForm from '../src/components/authentication/loginForm';
 import { MemoryRouter, Route } from "react-router";
 
 const island = {
@@ -24,9 +25,10 @@ const island = {
 };
 
 storiesOf("POI React App/Navigation", module)
-  .add("default", () => (
-    <Navigation  />
-  ));
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
+  .add("default", () => <Navigation />);
 
 storiesOf("POI React App/List", module)
   .addDecorator(story => (
@@ -66,4 +68,13 @@ storiesOf("POI React App/Details options", module)
   .add("delete", () => <DetailsOptions  state={"delete"}/>);
 
 storiesOf("POI React App/Map", module)
-  .add("default", () => <Map  />);
+  .add("default", () => <Map island={island}/>);
+
+storiesOf("POI React App/Login Form", module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+  ))
+  .add("default", () => (
+    <LoginForm />
+  ));
+

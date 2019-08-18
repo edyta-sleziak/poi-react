@@ -25,7 +25,7 @@ export default class CommentSection extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-md-9 col-md-offset-1">
+          <div className="col-md-12">
             <Form addCommentHandler={this.addComment} />
             <CommentList comments={comments} upvoteHandler={this.incrementUpvote } />
           </div>

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CommentSection from "../commentSection";
 import Map from "../map";
 import api from '../..//dataStore/stubAPI';
-import L from 'leaflet';
+import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 class Details extends Component {
   state = {
@@ -62,11 +62,11 @@ class Details extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-7">
+              <div className="col-md-10">
                 <h3 className="content">Description</h3>
                 <p className="content"><input type="textArea" className="form-control" defaultValue={this.props.island.description} onChange={this.handleDescriptionChange} /></p>
               </div>
-              <div className="col-md-5">
+              <div className="col-md-2">
                 <img
                   className="card-img-tag center "
                   alt={this.props.island.name}
