@@ -36,10 +36,12 @@ export default class Searchbar extends Component {
                     onChange={this.handleCategoryChange}
                   >
                     <option value="all">All</option>
-                    <option value="SouthCoast">South Coast</option>
-                    <option value="EastCoast">East Coast</option>
-                    <option value="NorthWest">North West</option>
-                    <option value="MidWest">Mid West</option>
+                    <option value="South Coast">South Coast</option>
+                    <option value="East Coast">East Coast</option>
+                    <option value="West Coast">West Coast</option>
+                    <option value="North East">North East</option>
+                    <option value="North West">North West</option>
+                    <option value="Mid West">Mid West</option>
                   </select>
                 </div>
               </div>

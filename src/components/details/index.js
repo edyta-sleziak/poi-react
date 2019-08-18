@@ -4,7 +4,9 @@ import "./details.css";
 import "../../fontawesome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CommentSection from "../commentSection";
+import Map from "../map";
 import api from '../..//dataStore/stubAPI';
+import L from 'leaflet';
 
 class Details extends Component {
   state = {
@@ -40,7 +42,9 @@ class Details extends Component {
     );
   };
   handleVote = () =>  this.props.upvoteHandler(this.props.island.id);
+
   render() {
+
     if (this.props.saveChanges === true) {
       console.log(this.state);
       this.updateIsland(this.props.island.id)
@@ -118,8 +122,8 @@ class Details extends Component {
                 <span className="content"> Latitude: {this.props.island.latitude} <br/></span>
                 <span className="content"> Longitude: {this.props.island.longitude} <br/></span>
               </div>
-              <div className="col-md-7">
-                Map placeholder
+              <div id="mapid" className="col-md-7">
+                <Map island={this.props.island}/>
               </div>
             </div>
             <hr />

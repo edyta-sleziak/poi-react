@@ -25,7 +25,7 @@ class Tile extends Component {
             </h5>
             <p key="category">
               <FontAwesomeIcon icon={["fas", "globe"]} />
-              <span> {this.props.island.category}</span>
+              <span> {this.props.island.category}</span><br />
               <span onClick={this.handleVote}><FontAwesomeIcon icon={["fas", "thumbs-up"]} />
                 {`  ${this.props.island.upvotes}`}</span>
             </p>

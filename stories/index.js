@@ -8,8 +8,9 @@ import CommentForm from '../src/components/commentForm/';
 import Form from '../src/components/form/';
 import Tile from '../src/components/tile/';
 import Details from '../src/components/details/';
-import { action } from "@storybook/addon-actions";
 import DetailsOptions from '../src/components/detailsOptions/';
+import { action } from "@storybook/addon-actions";
+import Map from '../src/components/map/';
 import { MemoryRouter, Route } from "react-router";
 
 const island = {
@@ -63,3 +64,6 @@ storiesOf("POI React App/Details options", module)
   .add("default", () => <DetailsOptions  />)
   .add("edit", () => <DetailsOptions  state={"edit"} />)
   .add("delete", () => <DetailsOptions  state={"delete"}/>);
+
+storiesOf("POI React App/Map", module)
+  .add("default", () => <Map  />);

@@ -21,13 +21,14 @@ class IslandPage extends Component {
       }
     } else if (button === "bottomButton") {
       if (this.state.status === "normal") {
+        this.setState({saveChanges: false});
         this.setState({status: "delete"});
       } else if (this.state.status === "edit") {
         this.setState({saveChanges: true});
         this.setState({status: "normal"});
       } else if (this.state.status === "delete") {
         this.deleteIsland(this.getId);
-        //window.location.href = '/';
+        window.location.href = '/';
       }
     }
   };

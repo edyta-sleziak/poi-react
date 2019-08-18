@@ -32,10 +32,12 @@ export default class Form extends Component {
               className="form-control"
               value={this.state.category}
               onChange={ this.handleCategoryChange }>
-              <option value="SouthCoast">South Coast</option>
-              <option value="EastCoast">East Coast</option>
-              <option value="NorthWest">North West</option>
-              <option value="MidWest">Mid West</option>
+              <option value="South Coast">South Coast</option>
+              <option value="East Coast">East Coast</option>
+              <option value="West Coast">West Coast</option>
+              <option value="North East">North East</option>
+              <option value="North West">North West</option>
+              <option value="Mid West">Mid West</option>
             </select>
           </div>
           <button type="submit" className="btn btn-primary"

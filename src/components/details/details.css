@@ -5,3 +5,8 @@
 .card {
     padding-right: 13px;
 }
+
+#mapid {
+    height: 400px;
+    width: 800px;
+}
