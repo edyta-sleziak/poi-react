@@ -14,7 +14,7 @@ export default class Form extends Component {
     return (
       <div className="fill bg-dark sticky-top">
         <div id ="brand" className="text-white bg-primary">
-          <h2 align="center">Irish Islands</h2>
+          <h2 align="center">Irish Coast</h2>
         </div>
         <form className="form bg-dark text-light">
           <h4>Add new island</h4>

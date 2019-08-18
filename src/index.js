@@ -6,6 +6,7 @@ import './index.css';
 import App from './App';
 import IslandPage from "./components/islandPage";
 import LoginForm from "./components/authentication/loginForm";
+import PrivateRoute from "./components/authentication/privateRoute";
 
 const Router = (props) => {
   // componentDidMount() {
@@ -25,7 +26,7 @@ const Router = (props) => {
       <div className="jumbotron">
         <div className="container-fluid ">
           <Switch>
-            <Route path="/islands/:id" component={IslandPage} />
+            <PrivateRoute path="/islands/:id" component={IslandPage} />
             <Route path="/login" component={LoginForm} />
             <Route exact path="/" component={App} />
             <Redirect from="*" to="/" />

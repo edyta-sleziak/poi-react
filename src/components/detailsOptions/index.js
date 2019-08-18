@@ -22,7 +22,7 @@ export default class detailsOptions extends Component {
     return (
       <div className="fill bg-dark sticky-top">
         <div id ="brand" className="text-white bg-primary">
-          <h2 align="center">Irish Islands</h2>
+          <h2 align="center">Irish Coast</h2>
         </div>
         <div id="buttons">"
           <a href="/"><button type="button" className="btn w-100 btn-success" >{activeButtons.topButtonVal}</button></a><br />
